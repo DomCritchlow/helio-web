@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SUNSPOTS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header id="header">
+        <span id="site-title">SUNSPOTS</span>
+        <span id="utc-clock"></span>
+      </header>
+
+      <main id="main">
+        <section id="sun-section">
+          <canvas id="sun-canvas"></canvas>
+          <div id="sun-controls">
+            <input type="range" id="date-slider" min="0" max="0" value="0" step="1" />
+            <div id="slider-labels">
+              <span id="slider-start"></span>
+              <span id="sun-date"></span>
+              <span id="slider-end">TODAY</span>
+            </div>
+          </div>
+        </section>
+
+        <aside id="sidebar">
+          <div class="stat-block">
+            <div class="stat-label" data-tip="Numbered sunspot groups currently visible on the solar disk">ACTIVE REGIONS</div>
+            <div class="stat-value" id="stat-regions">—</div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="stat-block">
+            <div class="stat-label" data-tip="Chance of at least one solar flare today, across all active regions">FLARE PROBABILITY</div>
+            <div class="prob-row">
+              <span class="prob-class" data-tip="Minor — brief radio blackouts on the sunlit side of Earth">C</span>
+              <div class="prob-bar-track"><div class="prob-bar" id="bar-c"></div></div>
+              <span class="prob-pct" id="pct-c">—</span>
+            </div>
+            <div class="prob-row">
+              <span class="prob-class" data-tip="Moderate — short radio blackouts, possible satellite disruption">M</span>
+              <div class="prob-bar-track"><div class="prob-bar" id="bar-m"></div></div>
+              <span class="prob-pct" id="pct-m">—</span>
+            </div>
+            <div class="prob-row">
+              <span class="prob-class" data-tip="Major — wide area blackouts, high-frequency radio loss for hours">X</span>
+              <div class="prob-bar-track"><div class="prob-bar" id="bar-x"></div></div>
+              <span class="prob-pct" id="pct-x">—</span>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="stat-block">
+            <div class="stat-label" data-tip="Solar radio flux at 10.7cm wavelength — a daily measure of overall solar activity independent of sunspot counting">F10.7 FLUX</div>
+            <div class="stat-value" id="stat-flux">—</div>
+            <div class="stat-sub" id="stat-flux-avg">90d avg —</div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="stat-block">
+            <div class="stat-label" data-tip="Smoothed monthly sunspot number — the sun runs on an ~11 year cycle of high and low activity">SOLAR CYCLE</div>
+            <div class="stat-value" id="stat-ssn">—</div>
+            <div class="stat-sub" data-tip="The current cycle, which began around late 2019 and is near its peak">cycle 25</div>
+          </div>
+        </aside>
+      </main>
+
+      <section id="chart-section">
+        <div id="chart-header">
+          <span class="chart-title" data-tip="Monthly sunspot count from 2019 to present, with NOAA's forecast to 2030">SOLAR CYCLE 25</span>
+          <span id="chart-legend">
+            <span class="legend-item"><span class="legend-line solid"></span>observed</span>
+            <span class="legend-item"><span class="legend-line dashed"></span>predicted</span>
+          </span>
+        </div>
+        <svg id="cycle-chart" preserveAspectRatio="none"></svg>
+      </section>
+
+      <footer id="footer">
+        <span>NOAA / SWPC</span>
+        <span id="last-updated">—</span>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
