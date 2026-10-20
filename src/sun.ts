@@ -24,7 +24,8 @@ export function initCanvas(canvas: HTMLCanvasElement) {
 function heliographicToGrid(latDeg: number, lonDeg: number): { gx: number; gy: number } | null {
   const lat = (latDeg * Math.PI) / 180
   const lon = (lonDeg * Math.PI) / 180
-  const xDisk = Math.cos(lat) * Math.sin(lon)
+  // NOAA gives west longitudes as negative; solar west is on the right as seen from Earth
+  const xDisk = -Math.cos(lat) * Math.sin(lon)
   const yDisk = Math.sin(lat)
   if (xDisk * xDisk + yDisk * yDisk > 1) return null
   return {
